@@ -8,13 +8,13 @@ const Jwt = require('jsonwebtoken');
 const JwtKey = "MyFirstMERNProjectReadyToDeploy";
 const multer = require('multer');
 const fs = require('fs');
-const path = require('path');
+// const path = require('path');
 
 app.use(cors());
 connectDB();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, './build')));
+// app.use(express.static(path.join(__dirname, './build')));
 app.use('/uploads', express.static('uploads'));
 
 const upload = multer({
@@ -393,8 +393,8 @@ app.post('/api/findUser', verifyToken, async (req, res) => {
     }
 })
 
-app.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, './build/index.html'));
+app.get('/', (req,res) => {
+    res.send("Api is listning...");
 });
 
 app.listen('5000', () => {
